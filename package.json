@@ -19,6 +19,7 @@
     "@openzeppelin/hardhat-upgrades": "^1.22.1",
     "@openzeppelin/test-helpers": "^0.5.15",
     "@openzeppelin/upgrades-core": "^1.24.1",
+    "@solidstate/contracts": "^0.0.54",
     "@typechain/ethers-v5": "^7.2.0",
     "@typechain/hardhat": "^2.3.1",
     "@types/chai": "^4.3.0",
@@ -29,6 +30,7 @@
     "@typescript-eslint/parser": "^4.33.0",
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
+    "diamond-2": "^1.4.0",
     "dotenv": "^10.0.0",
     "erc721a": "^4.2.3",
     "erc721a-upgradeable": "^4.2.3",
@@ -85,13 +87,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chiru-labs/ERC721A-Upgradeable.git"
+    "url": "git+https://github.com/gsknnft/*.git"
   },
-  "author": "chiru-labs",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/chiru-labs/ERC721A-Upgradeable/issues"
-  },
-  "homepage": "https://github.com/chiru-labs/ERC721A-Upgradeable#readme",
+  "author": "GSKNNFT",
+  "license": "",
+  "homepage": "https://gsknnft.com/",
   "dependencies": {}
 }

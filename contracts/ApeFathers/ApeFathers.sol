@@ -13,6 +13,10 @@ import {ReentrancyGuardUpgradeable} from '@openzeppelin/contracts-upgradeable/se
 import {ERC721URIStorageUpgradeable} from '@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721URIStorageUpgradeable.sol';
 import {ECDSAUpgradeable} from '@openzeppelin/contracts-upgradeable/utils/cryptography/ECDSAUpgradeable.sol';
 
+    error TokenCountVerificationFailed(string message);
+    error BurnClaimIsNotActive(string message);
+    error InvalidClaim(string message);
+    error CannotClaimTokenYouDontHold(string message);
 
 contract ApeFathers is
     ERC721AUpgradeable,
@@ -54,6 +58,10 @@ contract ApeFathers is
     mapping(address => uint256) private _tokenCounts;
     mapping(uint256 => string) private _tokenURIs;
 
+    // Events
+    event TokenTransferFailed(address indexed from, address indexed to, uint256 indexed tokenId);
+    event TokenTransfer(address indexed from, address indexed to, uint256 indexed tokenId);
+    event BurnClaimComplete(address indexed user, uint256 numberMinted, uint16[] tokenIds);
 
     // ApeDads Contract
     address apeDadsAddress = 0x6468f4243Faa8C3330bAAa0a7a138E2e5628C6f5;
@@ -62,7 +70,7 @@ contract ApeFathers is
     // Batch Transfer
     uint256 internal constant MAX_BATCH_SIZE = 50;
 
-    //     
+    //     Initializer
     function initialize() public initializerERC721A initializer {
         __ERC721A_init("ApeFathers", "DAPES");
         __Ownable_init();
@@ -287,16 +295,11 @@ contract ApeFathers is
             interfaceId == 0x2a55205a; // IERC2981
     }
 
-    event BurnClaimComplete(address indexed user, uint256 numberMinted, uint16[] tokenIds);
-
     /**
     * @dev Burn ApeDads Tokens and Receive ApeFathers tokens in return
     - WARNING: THIS ACTION IS IRREVERSABLE. ENSURE YOU ARE 
         AWARE OF THE RISKS OF BURNING YOUR ASSETS. */
-    error TokenCountVerificationFailed(string message);
-    error BurnClaimIsNotActive(string message);
-    error InvalidClaim(string message);
-    error CannotClaimTokenYouDontHold(string message);
+
 
     function burnClaim(uint16[] calldata _tokenIds, uint8 verifyNumberOfTokens) external nonReentrant {
         if (!isBurnClaimActive) {
@@ -349,9 +352,6 @@ contract ApeFathers is
             require(success, 'Royalty transfer failed');
         }
     }
-
-    event TokenTransferFailed(address indexed from, address indexed to, uint256 indexed tokenId);
-    event TokenTransfer(address indexed from, address indexed to, uint256 indexed tokenId);
 
     /**
      * @notice Batch Transfer ApeFather NFTs Easier and gas efficiently
