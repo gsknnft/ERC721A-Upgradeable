@@ -1,0 +1,17 @@
+{
+  "extends": "solhint:recommended",
+  "rules": {
+    "compiler-version": ["error", ">=0.8.9 <0.9.0"],
+    "func-visibility": ["warn", { "ignoreConstructors": true }],
+    "contract-name-camelcase": "off",
+    "func-name-mixedcase": "off",
+    "no-inline-assembly": "off",
+    "quotes": "off",
+    "no-empty-blocks": "off",
+    "use-forbidden-name": ["off", { "name": ["I", "l", "O"] }],
+    "max-states-count": [
+      "warn", 
+      30
+    ]
+  }
+}
