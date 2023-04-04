@@ -66,6 +66,7 @@ contract ApeFathers is
     function initialize() public initializerERC721A initializer {
         __ERC721A_init("ApeFathers", "DAPES");
         __Ownable_init();
+        __ReentrancyGuard_init();
         __UUPSUpgradeable_init();
         __ERC1967Upgrade_init();
         MAX_SUPPLY = 4000;
