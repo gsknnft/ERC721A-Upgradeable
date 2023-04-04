@@ -74,20 +74,13 @@ function getPrice(saleType: SaleType, numTokens: number): BigNumber {
 describe(CollectionConfig.contractName, function () {
   let owner!: SignerWithAddress;
   let holder!: SignerWithAddress;
-  let apeFathers: Contract;
-  let erc721a: ERC721AUpgradeable;
   let externalUser!: SignerWithAddress;
   let Contracted!: ApeFathers;
   let contracted: ContractFactory;
-  let ApeDadsApprovals: ApeDadsApprovals;
-  let ApeFathersInit: ApeFathersInit;
-  let ApeFathersAdmin: ApeFathersAdmin;
-  let IApeDads: IApeDads;
 
   before(async () => {
     const { owner: o, holder: h, externalUser: e, 
-      Contracted: C, contracted: c, ApeDadsApprovals: ada,
-      ApeFathersInit: afi, ApeFathersAdmin: afa, IApeDads: iad } =
+      Contracted: C, contracted: c } =
       await loadFixture(
         deploy
       );
@@ -96,17 +89,11 @@ describe(CollectionConfig.contractName, function () {
     externalUser = e;
     Contracted = C;
     contracted = c;
-    ApeDadsApprovals: ada;
-    ApeFathersInit: afi;
-    ApeFathersAdmin: afa;
-    IApeDads: iad;
   });
 
   beforeEach(async function () {
     let apeFathers = await ethers.getContractFactory('ApeFathers');
     apeFathers = await apeFathers.deploy();
-
-    erc721a = await ethers.getContractAt('ERC721AUpgradeable', erc721a.address);
   });
 });
 

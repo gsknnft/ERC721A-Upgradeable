@@ -89,18 +89,6 @@ module.exports = {
       {
         version: "^0.8.19",
       },
-      {
-        version: "0.8.0",
-      },
-      {
-        version: "0.8.0",
-      },
-      {
-        version: "0.8.4",
-      },
-      {
-        version: "0.8.18",
-      }
     ],
     settings: {
       optimizer: {
